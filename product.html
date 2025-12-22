@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>J&H Resin Arts - Product</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #f4a261;
+      --primary-dark: #e76f51;
+      --accent: #2a9d8f;
+      --bg-gradient: radial-gradient(circle at top left, #ffe5d1, #fff7f1 35%, #f1fbff 100%);
+      --text: #222;
+      --card-bg: #ffffff;
+      --shadow: 0 10px 28px rgba(0,0,0,0.09);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      color: var(--text);
+      background: var(--bg-gradient);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 1px 10px rgba(0,0,0,0.07);
+    }
+
+    .nav {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 0.6rem 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--primary);
+      background: #fff;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-cta {
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    main {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 3rem 1.3rem 3.5rem;
+    }
+
+    .breadcrumb {
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      color: #555;
+    }
+
+    .breadcrumb a {
+      color: #555;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 2.2rem;
+      align-items: flex-start;
+    }
+
+    .product-title {
+      font-size: 1.7rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-subtitle {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.8rem;
+    }
+
+    .price-range {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      margin-bottom: 0.7rem;
+    }
+
+    .product-description {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .feature-list {
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+      padding-left: 1rem;
+    }
+
+    .feature-list li {
+      margin-bottom: 0.35rem;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: #fff6ed;
+      border: 1px solid #ffe0c2;
+    }
+
+    .btn-primary {
+      border-radius: 999px;
+      padding: 0.65rem 1.5rem;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: var(--shadow);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .info-note {
+      font-size: 0.78rem;
+      color: #777;
+      margin-top: 0.3rem;
+    }
+
+    .product-gallery-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.1rem 1.2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .product-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .product-gallery-img {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.04);
+      background: #fff;
+    }
+
+    .placeholder-text {
+      font-size: 0.8rem;
+      margin-top: 0.7rem;
+      color: #666;
+    }
+
+    .extra-info {
+      margin-top: 2.4rem;
+      font-size: 0.88rem;
+      color: #444;
+    }
+
+    .extra-info h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .extra-info p {
+      margin-bottom: 0.4rem;
+    }
+
+    footer {
+      padding: 1.4rem 1.3rem;
+      background: #121212;
+      color: #eee;
+      font-size: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .footer-inner {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .product-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      main { padding: 2.6rem 1rem 3rem; }
+      .product-title { font-size: 1.5rem; }
+      .product-gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="nav-left">
+      <div class="nav-logo">
+        <img src="logo.png" alt="J&H Resin Arts Logo" />
+      </div>
+      <div class="brand-name">J&H RESIN ARTS</div>
+    </div>
+    <button class="nav-cta" onclick="window.location.href='https://wa.me/910000000000';">
+      WhatsApp Order
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="breadcrumb">
+    <a href="index.html#products-list">? Back to All Products</a>
+  </div>
+
+  <div class="product-layout">
+    <!-- LEFT: TEXT -->
+    <div>
+      <h1 class="product-title" id="productTitle">Product Name</h1>
+      <div class="product-subtitle" id="productSubtitle"></div>
+      <div class="price-range" id="priceRange"></div>
+      <p class="product-description" id="productDescription"></p>
+
+      <ul class="feature-list" id="featureList"></ul>
+
+      <div class="badge-row" id="badgeRow"></div>
+
+      <button class="btn-primary" id="orderButton">
+        Order this on WhatsApp
+      </button>
+      <div class="info-note">
+        Share product name, size, colours and photos on WhatsApp. We’ll confirm design &amp; price before starting.
+      </div>
+    </div>
+
+    <!-- RIGHT: GALLERY -->
+    <div class="product-gallery-card">
+      <div class="product-gallery-grid" id="productImages"></div>
+      <div class="placeholder-text">
+        Replace these images with your real product photos (image files inside the same folder).
+      </div>
+    </div>
+  </div>
+
+  <div class="extra-info" id="extraInfo"></div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>© <span id="year"></span> J&amp;H Resin Arts. All rights reserved.</div>
+    <div><a href="index.html#contact" style="color:#ddd;text-decoration:underline;text-underline-offset:3px;">Contact / Order</a></div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const productsData = {
+    "resin-keychain": {
+      title: "Resin Keychain",
+      subtitle: "Alphabet, initials & name keychains",
+      price: "?80 – ?150 per letter (custom combos available)",
+      description:
+        "Custom alphabet keychains made with resin, glitter, dried flowers and tiny charms. Perfect for daily use, gifting and return gifts.",
+      features: [
+        "Single letters, initials or full names",
+        "Choose your own colours, flakes and stickers",
+        "Sturdy metal keyring with chain",
+        "Great for birthday return gifts or couple gifts"
+      ],
+      badges: ["Return gifts", "Alphabet designs", "Custom colours"],
+      images: ["image9.jpg", "image10.jpg", "image11.jpg", "image12.jpg"],
+      extraTitle: "How to Order Keychains",
+      extraText:
+        "Send us the letters, quantity, colour theme and any special icons (hearts, flowers, symbols). We’ll share layout ideas and final pricing based on the number of pieces."
+    },
+
+    "resin-photo-frame": {
+      title: "Resin Photo Frame",
+      subtitle: "Wedding, birthday, family & couple frames",
+      price: "?899 – ?1,799 depending on size & design",
+      description:
+        "High-gloss resin frames with your favourite photos, names, dates and quotes. Ideal for anniversaries, birthdays and housewarming gifts.",
+      features: [
+        "Multiple size options from 8\" to 12\"",
+        "Choose layout, colour theme and decorations",
+        "Can include names, dates and short messages",
+        "Fully sealed and easy to clean"
+      ],
+      badges: ["Anniversary gifts", "Birthday gifts", "Family memories"],
+      images: ["image1.jpg", "image2.jpg", "image3.jpg", "image5.jpg"],
+      extraTitle: "Best Occasions for Resin Photo Frames",
+      extraText:
+        "These frames are perfect for wedding gifts, couple anniversaries, birthday collages, or as a family memory wall piece."
+    },
+
+    "resin-marriage-preservation": {
+      title: "Resin Marriage Preservation",
+      subtitle: "Preserve your wedding memories in resin",
+      price: "Starting around ?1,299 – ?2,199",
+      description:
+        "Turn your wedding photos, dates and small elements into a single preserved resin artwork.",
+      features: [
+        "Add wedding dates and couple names",
+        "Include favourite wedding photos",
+        "Gold leaf, florals and stickers for decoration",
+        "Beautiful as a bedroom or living room decor piece"
+      ],
+      badges: ["Wedding gifts", "Anniversary keepsake"],
+      images: ["image1.jpg", "image3.jpg", "image5.jpg", "image12.jpg"],
+      extraTitle: "What Can Be Included",
+      extraText:
+        "You can send us digital photos and any text you want on the frame. For physical items like invitation pieces or flowers, you can discuss shipping with us on WhatsApp."
+    },
+
+    "resin-baby-preservation": {
+      title: "Resin Baby Preservation",
+      subtitle: "Baby announcement & milestone resin frames",
+      price: "?899 – ?1,699 depending on size & details",
+      description:
+        "Celebrate your baby’s arrival with a resin frame that includes birth details, hospital, weight, blood group and adorable photos.",
+      features: [
+        "Baby name, birth date & time",
+        "Hospital name, weight, blood group",
+        "Pregnancy test kit or baby footprints (optional)",
+        "Cute icons like bottles, toys and hearts"
+      ],
+      badges: ["Newborn gift", "Baby shower gift"],
+      images: ["image1.jpg", "image3.jpg", "image6.jpg", "image8.jpg"],
+      extraTitle: "A Keepsake That Lasts",
+      extraText:
+        "These frames are ideal to display in the baby’s room or living room and become a long-term memory for the family."
+    },
+
+    "resin-wall-clocks": {
+      title: "Resin Wall Clocks",
+      subtitle: "Photo clocks & decorative resin clocks",
+      price: "?1,199 – ?1,999 depending on size & photos",
+      description:
+        "Functional clocks made with resin and custom designs. Add multiple photos around the clock face for a unique decor piece.",
+      features: [
+        "Round or custom-shaped base",
+        "8–12 photos or plain art style",
+        "Quality clock mechanism & hands",
+        "Can be used as wall or table clock"
+      ],
+      badges: ["Home decor", "Photo gifts"],
+      images: ["image7.jpg", "image2.jpg", "image1.jpg"],
+      extraTitle: "Perfect for",
+      extraText:
+        "Kids’ room decor, anniversary gifts, family clocks with all children’s photos, or as a special birthday highlight."
+    },
+
+    "resin-name-stands": {
+      title: "Resin Name Stands",
+      subtitle: "Desk nameplates & display pieces",
+      price: "?499 – ?999 depending on length & design",
+      description:
+        "Resin name stands with individual letters mounted on a base. Ideal for desks, shelves or gifting.",
+      features: [
+        "Single word names or couple names",
+        "Ombre colours, glitter & flakes",
+        "Smooth, glossy finish",
+        "Great for kids’ names, work desks and room decor"
+      ],
+      badges: ["Desk decor", "Personalised gifts"],
+      images: ["image4.jpg", "image9.jpg", "image10.jpg"],
+      extraTitle: "Styling Ideas",
+      extraText:
+        "Place them on bookshelves, study tables or reception desks. You can also pair with matching keychains as a combo gift."
+    },
+
+    "personalized-resin-gifts": {
+      title: "Personalized Resin Gifts",
+      subtitle: "Mix of frames, keychains, clocks & stands",
+      price: "Custom – depends on product type",
+      description:
+        "Choose any combination of our products and we’ll design a personalised resin gift set for your occasion.",
+      features: [
+        "Any combination: frames, keychains, clocks, stands",
+        "Matching colour theme and style",
+        "Add names, dates and short messages",
+        "Ideal for special occasions and corporate gifting"
+      ],
+      badges: ["Gift hampers", "Custom combos"],
+      images: ["image1.jpg", "image2.jpg", "image4.jpg", "image9.jpg"],
+      extraTitle: "Create Your Own Gift Box",
+      extraText:
+        "Tell us your budget and occasion, and we can suggest a curated resin gift set with multiple pieces."
+    },
+
+    "customized-resin-gifts": {
+      title: "Customized Resin Gifts",
+      subtitle: "We design according to your idea",
+      price: "Fully custom – quoted after discussion",
+      description:
+        "Have a unique idea? We can discuss and customise colours, layouts, shapes and elements to match your vision.",
+      features: [
+        "Custom layouts & shapes",
+        "Choose any colour palette",
+        "Option to include text, photos and charms",
+        "We share design previews before finalising"
+      ],
+      badges: ["One-of-a-kind", "Fully custom"],
+      images: ["image3.jpg", "image5.jpg", "image8.jpg", "image12.jpg"],
+      extraTitle: "How Custom Orders Work",
+      extraText:
+        "Share your idea on WhatsApp with sample pictures or references. We’ll confirm what is possible and share timelines & cost."
+    },
+
+    "resin-flower-preservation": {
+      title: "Resin Flower Preservation",
+      subtitle: "Preserve flowers inside clear resin",
+      price: "Typical range: ?1,299 – ?2,499 (depends on size)",
+      description:
+        "Dry or special flowers can be preserved inside a clear resin block or frame, keeping them safe for years.",
+      features: [
+        "Perfect for wedding bouquet flowers",
+        "Can be done as blocks, frames or coasters",
+        "Retention of natural colours as much as possible",
+        "Requires advance discussion about flower condition"
+      ],
+      badges: ["Wedding bouquet", "Memory keepsake"],
+      images: ["image12.jpg", "image5.jpg"],
+      extraTitle: "Important Note",
+      extraText:
+        "Fresh flowers need to be dried properly before casting. Message us to understand the process and shipping options."
+    },
+
+    "resin-jewellery": {
+      title: "Resin Jewellery",
+      subtitle: "Neckpieces, earrings, rings & more",
+      price: "?199 – ?799 per piece (sample range)",
+      description:
+        "Lightweight resin jewellery that can include flowers, glitter, foils and tiny charms.",
+      features: [
+        "Earrings, pendants, rings and bangles",
+        "Many shape molds and colour combinations",
+        "Hypoallergenic metal findings depending on stock",
+        "Great for festivals and gifting"
+      ],
+      badges: ["Wearable art", "Lightweight"],
+      images: ["image12.jpg"],
+      extraTitle: "Custom Jewellery",
+      extraText:
+        "Share your preferred shapes (round, heart, rectangle, etc.) and colours. We can match jewellery to outfits or events."
+    },
+
+    "resin-art-bracelet": {
+      title: "Resin Art Bracelet",
+      subtitle: "Statement resin bracelets",
+      price: "Approx. ?299 – ?699",
+      description:
+        "Chunky or slim resin bracelets with embedded florals, flakes or abstract art swirls.",
+      features: [
+        "Multiple sizes based on wrist",
+        "Solid or transparent designs",
+        "Floral, glitter or marble effects",
+        "Comfortable and smooth edges"
+      ],
+      badges: ["Fashion accessory", "Custom colours"],
+      images: ["image12.jpg"],
+      extraTitle: "Pair With",
+      extraText:
+        "Can be combined with matching earrings or a pendant to create a full jewellery set."
+    },
+
+    "resin-keepsakes": {
+      title: "Resin Keepsakes",
+      subtitle: "Special memory pieces preserved in resin",
+      price: "Price depends on item & size",
+      description:
+        "Hair curls, tiny notes, charms or symbols can be preserved inside small resin pieces like hearts, blocks or letters.",
+      features: [
+        "Suitable for pet tags, baby keepsakes, tiny souvenirs",
+        "Various shapes and sizes possible",
+        "Clear or tinted backgrounds",
+        "Requires careful planning for delicate items"
+      ],
+      badges: ["Memory pieces", "Mini gifts"],
+      images: ["image6.jpg", "image8.jpg"],
+      extraTitle: "Ideas for Keepsakes",
+      extraText:
+        "Baby hospital tags, small pieces of handwritten notes, shells from a trip, mini charms from a special day – all can be turned into keepsakes."
+    },
+
+    "resin-earrings": {
+      title: "Resin Earrings",
+      subtitle: "Cute and elegant resin earrings",
+      price: "?199 – ?499 per pair",
+      description:
+        "Handmade resin earrings in various shapes with glitters, florals or abstract art patterns.",
+      features: [
+        "Many shapes – hoops, drops, studs, rectangles",
+        "Custom colours to match your outfit",
+        "Lightweight and comfortable",
+        "Great for daily wear or festive looks"
+      ],
+      badges: ["Wearable art", "Custom colours"],
+      images: ["image12.jpg"],
+      extraTitle: "Bulk & Gift Orders",
+      extraText:
+        "You can also order multiple mixed designs as gift sets or return gifts for small gatherings."
+    },
+
+    "resin-pendant": {
+      title: "Resin Pendant",
+      subtitle: "Minimal to bold resin pendants",
+      price: "?249 – ?599",
+      description:
+        "Resin pendants with dried flowers, initials, glitter or small charms. Comes with matching chain or cord based on design.",
+      features: [
+        "Single or layered designs",
+        "Can include initials or small motifs",
+        "Great addition to casual and party outfits",
+        "Gift-ready packaging available"
+      ],
+      badges: ["Neck jewellery", "Personalised initial options"],
+      images: ["image12.jpg"],
+      extraTitle: "Combine With",
+      extraText:
+        "Pair pendants with matching earrings or bracelets for a complete jewellery set."
+    },
+
+    "resin-bookmark": {
+      title: "Resin Bookmark",
+      subtitle: "Pretty bookmarks for book lovers",
+      price: "?150 – ?299 each",
+      description:
+        "Slim resin bookmarks with dried flowers, glitter or names – a perfect gift for readers.",
+      features: [
+        "Option to add name or initials",
+        "Tassel or charm at the top",
+        "Many colour combinations available",
+        "Durable and smooth edges"
+      ],
+      badges: ["Book lover gift", "Personalised"],
+      images: ["image12.jpg"],
+      extraTitle: "Great For",
+      extraText:
+        "Teacher’s day gifts, return gifts, or personalised tokens for book clubs."
+    },
+
+    "resin-coasters": {
+      title: "Resin Coasters",
+      subtitle: "Stylish coasters for your table",
+      price: "?299 – ?899 per set (sample range)",
+      description:
+        "Resin coasters in round, square or geode shapes with colours, metallic edges and abstract art.",
+      features: [
+        "Heat-resistant for regular beverage use",
+        "Available as single pieces or sets",
+        "Gold or silver edging possible",
+        "Ideal for home decor and gifting"
+      ],
+      badges: ["Home decor", "Functional art"],
+      images: ["image12.jpg"],
+      extraTitle: "Set Options",
+      extraText:
+        "You can order sets of 2, 4 or 6 matching or mixed designs based on your table setting."
+    },
+
+    "resin-tray": {
+      title: "Resin Tray",
+      subtitle: "Decorative serving & vanity trays",
+      price: "?799 – ?1,999 (based on size & work)",
+      description:
+        "Resin-coated trays with rich colours and patterns, ideal for serving or as a vanity tray for perfumes and jewellery.",
+      features: [
+        "Multiple base shapes and sizes",
+        "Custom colour themes and metallic accents",
+        "Optional handles and hardware",
+        "Great as centre table or dressing table decor"
+      ],
+      badges: ["Luxury decor", "Gift item"],
+      images: ["image12.jpg"],
+      extraTitle: "Popular Themes",
+      extraText:
+        "Ocean, marble, geode and pastel swirl designs are some of the most loved tray styles."
+    },
+
+    "resin-rings-bangles": {
+      title: "Resin Rings & Bangles",
+      subtitle: "Colourful rings and bangles made in resin",
+      price: "?199 – ?599 per piece",
+      description:
+        "Simple and chunky resin rings & bangles that can contain flowers, glitter or solid colours.",
+      features: [
+        "Custom sizes to fit comfortably",
+        "Single colour or multi-colour options",
+        "Smooth interior surface for easy wear",
+        "Can be matched with other resin jewellery"
+      ],
+      badges: ["Fashion accessory", "Custom fits"],
+      images: ["image12.jpg"],
+      extraTitle: "Matching Sets",
+      extraText:
+        "Rings and bangles can be ordered as sets with bracelets and earrings in the same colour palette."
+    }
+  };
+
+  function renderProduct() {
+    const params = new URLSearchParams(window.location.search);
+    const key = params.get("product") || "resin-photo-frame";
+    const data = productsData[key] || productsData["resin-photo-frame"];
+
+    document.title = `J&H Resin Arts - ${data.title}`;
+
+    document.getElementById("productTitle").textContent = data.title;
+    document.getElementById("productSubtitle").textContent = data.subtitle || "";
+    document.getElementById("priceRange").textContent = data.price || "";
+    document.getElementById("productDescription").textContent = data.description || "";
+
+    const featureList = document.getElementById("featureList");
+    featureList.innerHTML = "";
+    (data.features || []).forEach(f => {
+      const li = document.createElement("li");
+      li.textContent = f;
+      featureList.appendChild(li);
+    });
+
+    const badgeRow = document.getElementById("badgeRow");
+    badgeRow.innerHTML = "";
+    (data.badges || []).forEach(b => {
+      const span = document.createElement("span");
+      span.className = "badge";
+      span.textContent = b;
+      badgeRow.appendChild(span);
+    });
+
+    const imgContainer = document.getElementById("productImages");
+    imgContainer.innerHTML = "";
+    (data.images || []).forEach(src => {
+      const wrap = document.createElement("div");
+      wrap.className = "product-gallery-img";
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = data.title;
+      wrap.appendChild(img);
+      imgContainer.appendChild(wrap);
+    });
+
+    const extraInfo = document.getElementById("extraInfo");
+    extraInfo.innerHTML = "";
+    if (data.extraTitle || data.extraText) {
+      const h3 = document.createElement("h3");
+      h3.textContent = data.extraTitle || "More Information";
+      const p = document.createElement("p");
+      p.textContent = data.extraText || "";
+      extraInfo.appendChild(h3);
+      extraInfo.appendChild(p);
+    }
+
+    const orderBtn = document.getElementById("orderButton");
+    orderBtn.onclick = function () {
+      const msg = encodeURIComponent(
+        `Hi, I’m interested in: ${data.title}. Please share details.`
+      );
+      window.location.href = "https://wa.me/910000000000?text=" + msg;
+    };
+  }
+
+  renderProduct();
+</script>
+
+</body>
+</html>
