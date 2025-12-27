@@ -1,294 +1,166 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>J&H Resin Arts - Product</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --primary: #ff7b3f;
-      --primary-dark: #e14b35;
-      --accent: #1fa58c;
-      --ink: #1b1b1f;
-      --muted: #555;
-      --card: #0f111a;
-      --panel: rgba(255,255,255,0.08);
-      --glass: rgba(255,255,255,0.12);
-      --shadow: 0 20px 40px rgba(0,0,0,0.35);
+      --primary: #e46a0a;
+      --primary-dark: #c45307;
+      --accent: #3a7d44;
+      --ink: #171515;
+      --muted: #6b6b6b;
+      --bg: radial-gradient(circle at 10% 10%, rgba(255,220,187,0.6), transparent 28%),
+             radial-gradient(circle at 90% 8%, rgba(139,185,255,0.35), transparent 30%),
+             radial-gradient(circle at 15% 80%, rgba(248,232,200,0.55), transparent 32%),
+             #f9f6ef;
+      --card: #ffffff;
+      --border: 1px solid rgba(0,0,0,0.06);
+      --shadow: 0 18px 36px rgba(0,0,0,0.12);
       --radius: 18px;
-      --border: 1px solid rgba(255,255,255,0.12);
-      --bg: radial-gradient(circle at 15% 20%, rgba(255,152,99,0.14), transparent 28%),
-            radial-gradient(circle at 85% 10%, rgba(31,165,140,0.18), transparent 32%),
-            radial-gradient(circle at 20% 85%, rgba(255,123,63,0.12), transparent 32%),
-            #05070f;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: "Poppins", sans-serif;
-      color: #f4f6fb;
+      font-family: "DM Sans", sans-serif;
       background: var(--bg);
+      color: var(--ink);
       line-height: 1.65;
-      min-height: 100vh;
     }
 
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; }
 
     header {
       position: sticky;
       top: 0;
-      z-index: 50;
-      backdrop-filter: blur(18px);
-      background: rgba(5,7,15,0.78);
+      z-index: 30;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(14px);
       border-bottom: var(--border);
     }
 
-    .nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0.75rem 1.4rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.2rem;
-    }
+    .nav { width: min(1360px, 96vw); margin: 0 auto; padding: clamp(0.85rem, 1vw + 0.4rem, 1.2rem) clamp(1.1rem, 2vw, 1.8rem); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .nav-left { display: flex; align-items: center; gap: 0.8rem; }
+    .nav-logo { width: 52px; height: 52px; border-radius: 14px; overflow: hidden; border: 2px solid var(--primary); box-shadow: var(--shadow); }
+    .brand { font-weight: 700; letter-spacing: 0.14em; font-size: 1.05rem; }
+    .btn-pill { border: none; cursor: pointer; padding: 0.65rem 1.25rem; border-radius: 999px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; font-weight: 600; box-shadow: var(--shadow); }
 
-    .nav-left { display: flex; align-items: center; gap: 0.7rem; }
+    main { width: min(1360px, 96vw); margin: 0 auto; padding: clamp(2.6rem, 3vw, 3.6rem) clamp(1.2rem, 2.6vw, 1.8rem) clamp(3.2rem, 4vw, 4rem); }
+    .breadcrumb { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.8rem; }
+    .breadcrumb a { text-decoration: underline; text-underline-offset: 4px; }
 
-    .nav-logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 2px solid var(--primary);
-      background: #0c0f1a;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
-    }
+    .page-header { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.4rem; }
+    .pill { padding: 0.35rem 0.8rem; border-radius: 999px; background: #fff; border: var(--border); font-weight: 600; color: var(--primary-dark); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
 
-    .brand-name { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.12em; }
+    .product-shell { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: clamp(1.4rem, 2vw, 2rem); align-items: start; }
+    .card { background: var(--card); border: var(--border); box-shadow: var(--shadow); border-radius: var(--radius); padding: clamp(1.2rem, 2vw, 1.8rem); }
 
-    .nav-cta {
-      padding: 0.55rem 1.2rem;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #fff;
-      font-size: 0.92rem;
-      border: none;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
+    .hero-title { font-family: "Playfair Display", serif; font-size: 2.15rem; line-height: 1.25; margin-bottom: 0.35rem; }
+    .hero-sub { color: #4a4a4a; font-size: 1.02rem; margin-bottom: 0.15rem; }
+    .price { color: var(--primary-dark); font-weight: 700; margin-bottom: 0.6rem; font-size: 1.05rem; }
+    .desc { color: #3c3c3c; font-size: 0.98rem; margin-bottom: 0.9rem; }
 
-    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 16px 35px rgba(0,0,0,0.45); }
-
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 3.2rem 1.4rem 3.8rem;
-    }
-
-    .breadcrumb {
-      font-size: 0.85rem;
-      margin-bottom: 1rem;
-      color: #b9c4d6;
-    }
-    .breadcrumb a {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      color: #dbe4ff;
-    }
-
-    .page-header {
-      margin-bottom: 1.6rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-    }
-
-    .pill {
-      padding: 0.3rem 0.75rem;
-      border-radius: 999px;
-      background: var(--panel);
-      border: var(--border);
-      font-size: 0.78rem;
-      color: #dfe7fb;
-    }
-
-    .product-shell {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 1.8rem;
-      align-items: start;
-    }
-
-    .card {
-      background: linear-gradient(145deg, rgba(16,19,32,0.95), rgba(11,13,24,0.9));
-      border-radius: 20px;
-      border: var(--border);
-      box-shadow: var(--shadow);
-      padding: 1.3rem 1.4rem;
-    }
-
-    .hero-title { font-size: 2.05rem; line-height: 1.25; margin-bottom: 0.35rem; }
-    .hero-sub { color: #c9d2e8; font-size: 0.98rem; margin-bottom: 0.2rem; }
-    .price { color: var(--primary); font-weight: 700; margin-bottom: 0.6rem; }
-    .desc { color: #d5def5; font-size: 0.95rem; margin-bottom: 0.8rem; }
-
-    .feature-list { padding-left: 1rem; color: #c8d0e5; margin-bottom: 0.8rem; }
+    .feature-list { padding-left: 1.1rem; margin-bottom: 0.8rem; color: #454545; }
     .feature-list li { margin-bottom: 0.35rem; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+    .badge { background: rgba(228,106,10,0.12); color: var(--primary-dark); border: 1px solid rgba(228,106,10,0.35); padding: 0.3rem 0.7rem; border-radius: 12px; font-size: 0.82rem; }
 
-    .badge-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.1rem; }
-    .badge { font-size: 0.78rem; padding: 0.28rem 0.75rem; border-radius: 12px; background: rgba(31,165,140,0.12); color: #b0f0df; border: 1px solid rgba(31,165,140,0.4); }
+    .slider { position: relative; overflow: hidden; border-radius: 18px; border: var(--border); box-shadow: var(--shadow); min-height: 240px; }
+    .slider-track { display: flex; transition: transform 0.6s ease; will-change: transform; }
+    .slide { min-width: 100%; height: clamp(240px, 32vw, 360px); position: relative; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .slider-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.05); cursor: pointer; }
+    .dot.active { background: var(--primary); }
 
-    .product-gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.9rem;
-    }
-    .product-gallery-img {
-      border-radius: 16px;
-      overflow: hidden;
-      border: var(--border);
-      background: #0a0d16;
-      position: relative;
-      min-height: 140px;
-    }
-    .product-gallery-img img { width: 100%; height: 100%; object-fit: cover; }
-    .placeholder-text { font-size: 0.82rem; color: #9ba7c4; margin-top: 0.8rem; }
+    .product-gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: clamp(0.8rem, 1.5vw, 1.2rem); margin-top: 1.2rem; }
+    .product-gallery-img { border-radius: 12px; overflow: hidden; border: var(--border); box-shadow: 0 10px 18px rgba(0,0,0,0.06); }
+    .placeholder-text { font-size: 0.86rem; color: var(--muted); margin-top: 0.6rem; }
 
-    .order-card h3 { margin-bottom: 0.7rem; font-size: 1.15rem; }
-    .form-grid { display: grid; gap: 0.65rem; }
-    label { font-size: 0.9rem; color: #e0e7fa; display: block; margin-bottom: 0.2rem; }
-
-    input, textarea, select {
-      width: 100%;
-      padding: 0.65rem 0.8rem;
-      border-radius: 12px;
-      border: var(--border);
-      background: rgba(255,255,255,0.05);
-      color: #eaf2ff;
-      font-size: 0.94rem;
-      outline: none;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    }
-    input:focus, textarea:focus, select:focus { border-color: rgba(255,123,63,0.6); box-shadow: 0 0 0 3px rgba(255,123,63,0.18); }
+    .order-card h3 { margin-bottom: 0.7rem; font-size: 1.1rem; }
+    .form-grid { display: grid; gap: 0.75rem; }
+    label { font-weight: 600; font-size: 0.94rem; }
+    input, textarea { width: 100%; padding: 0.7rem 0.85rem; border-radius: 12px; border: var(--border); background: #f8f8f8; font-size: 0.95rem; }
+    input:focus, textarea:focus { outline: 2px solid rgba(228,106,10,0.25); }
     textarea { min-height: 110px; resize: vertical; }
 
-    .btn-primary {
-      border-radius: 14px;
-      padding: 0.8rem 1.3rem;
-      font-size: 1rem;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      box-shadow: var(--shadow);
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #fff;
-      margin-top: 0.3rem;
-      width: 100%;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 18px 35px rgba(0,0,0,0.45); }
+    .btn-primary { border: none; cursor: pointer; width: 100%; padding: 0.9rem 1.2rem; border-radius: 14px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; font-weight: 700; font-size: 1rem; box-shadow: var(--shadow); }
+    .btn-primary:disabled { opacity: 0.65; cursor: not-allowed; }
 
-    .note { font-size: 0.84rem; color: #aeb8d6; margin-top: 0.2rem; }
-    .feedback { margin-top: 0.4rem; font-size: 0.88rem; color: #f7caca; display: none; }
+    .note { font-size: 0.85rem; color: var(--muted); }
+    .feedback { margin-top: 0.4rem; font-size: 0.9rem; color: #c0392b; display: none; }
     .feedback.show { display: block; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.7rem; }
+    .chip-soft { background: #f2f2f2; border: var(--border); border-radius: 10px; padding: 0.28rem 0.65rem; font-size: 0.85rem; }
 
-    .chips { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.6rem; }
-    .chip-soft { padding: 0.25rem 0.6rem; border-radius: 10px; background: rgba(255,255,255,0.08); border: var(--border); font-size: 0.8rem; }
+    .extra-card h3 { margin-bottom: 0.4rem; font-family: "Playfair Display", serif; }
+    .extra-card p { color: #3f3f3f; }
 
-    .extra-card { margin-top: 1.6rem; }
-    .extra-card h3 { margin-bottom: 0.4rem; }
-    .extra-card p { color: #c7d1eb; font-size: 0.94rem; }
-
-    footer {
-      padding: 1.6rem 1.4rem;
-      background: #03050b;
-      border-top: var(--border);
-      color: #c9d2e8;
-      font-size: 0.86rem;
-      margin-top: 2.4rem;
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
+    .announcement {
+      margin-bottom: 1.6rem;
+      padding: 1.1rem 1.3rem;
+      background: linear-gradient(135deg, #fff3e6, #ffe8c5);
+      border: var(--border);
+      border-radius: 14px;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.08);
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.8rem;
       align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
+    .announcement strong { color: var(--primary-dark); font-size: 1.02rem; }
+    .announcement span { color: #4a4a4a; }
 
-    @media (max-width: 980px) {
-      .product-shell { grid-template-columns: 1fr; }
-      .product-gallery-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-      .hero-title { font-size: 1.8rem; }
-    }
+    footer { padding: 1.6rem 1.4rem; background: #1c1c22; color: #e8e8f0; font-size: 0.9rem; margin-top: 2.2rem; }
+    .footer-inner { width: min(1360px, 96vw); margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; }
 
-    @media (max-width: 560px) {
-      main { padding: 2.5rem 1rem 3rem; }
-      .hero-title { font-size: 1.6rem; }
-      .product-gallery-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 980px) { .slide { height: clamp(220px, 50vw, 300px); } }
+    @media (max-width: 600px) { main { padding: 2.6rem 1.2rem 3rem; } .hero-title { font-size: 1.8rem; } }
   </style>
 </head>
 <body>
-
 <header>
   <div class="nav">
     <div class="nav-left">
-      <div class="nav-logo">
-        <img src="logo.png" alt="J&H Resin Arts Logo" />
-      </div>
-      <div class="brand-name">J&H RESIN ARTS</div>
+      <div class="nav-logo"><img src="logo.png" alt="J&H Resin Arts Logo" /></div>
+      <a href="index.html" class="brand">J&H RESIN ARTS</a>
     </div>
-    <button class="nav-cta" onclick="window.location.href='https://wa.me/919500664388';">
-      WhatsApp Order
-    </button>
+    <button class="btn-pill" onclick="window.location.href='https://wa.me/919500664388';">WhatsApp Order</button>
   </div>
 </header>
 
 <main>
-  <div class="breadcrumb">
-    <a href="index.html#products-list">&larr; Back to all products</a>
-  </div>
-
+  <div class="breadcrumb"><a href="index.html#products-list">&larr; Back to all products</a></div>
   <div class="page-header">
-    <span class="pill">Made in India</span>
-    <span class="pill">Handcrafted on order</span>
+    <span class="pill">Bright Classic Look</span>
+    <span class="pill">Handcrafted to order</span>
     <span class="pill">Pan-India delivery</span>
   </div>
 
   <div class="product-shell">
-    <!-- LEFT -->
     <div class="card">
       <div class="hero-title" id="productTitle">Product Name</div>
       <div class="hero-sub" id="productSubtitle"></div>
       <div class="price" id="priceRange"></div>
       <div class="desc" id="productDescription"></div>
-
       <ul class="feature-list" id="featureList"></ul>
       <div class="badge-row" id="badgeRow"></div>
 
-      <div class="card" style="margin-top:1.1rem; background: rgba(255,255,255,0.03);">
-        <div class="product-gallery-grid" id="productImages"></div>
-        <div class="placeholder-text">
-          Swap these placeholders with your own product photos (use the same file names to auto-load).
-        </div>
+      <div class="slider" aria-label="Product photos carousel">
+        <div class="slider-track" id="sliderTrack"></div>
+        <div class="slider-dots" id="sliderDots"></div>
       </div>
+      <div class="product-gallery-grid" id="productImages"></div>
+      <div class="placeholder-text">Replace these placeholders with your real product photos using the same file names.</div>
     </div>
-
-    <!-- RIGHT -->
     <div class="card order-card">
       <h3>Share your design brief</h3>
       <div class="form-grid">
@@ -298,7 +170,7 @@
         </div>
         <div>
           <label for="colourInput">Colour theme</label>
-          <input id="colourInput" placeholder="Ex: Pastel pink + gold flakes, ocean blue, minimal white" />
+          <input id="colourInput" placeholder="Ex: Pastel blush + gold leaf, ocean teal, black & white" />
         </div>
         <div>
           <label for="notesInput">Message or names to include</label>
@@ -311,18 +183,16 @@
         <div>
           <label for="photoUpload">Upload 5 to 12 reference photos (required)</label>
           <input type="file" id="photoUpload" accept="image/*" multiple />
-          <div class="note" id="uploadHint">Attach clear photos; we will re-ask you to attach them in WhatsApp chat.</div>
+          <div class="note" id="uploadHint">Photos upload securely to Firebase before sending the WhatsApp brief.</div>
           <div class="note" id="photoInfo"></div>
         </div>
-        <button class="btn-primary" id="orderButton">
-          Send brief on WhatsApp
-        </button>
+        <button class="btn-primary" id="orderButton">Upload & send on WhatsApp</button>
         <div class="feedback" id="formFeedback"></div>
       </div>
-      <div class="chips" style="margin-top:0.9rem;">
-        <div class="chip-soft">Pan-India delivery</div>
-        <div class="chip-soft">Proof shared before we pour resin</div>
+      <div class="chips">
+        <div class="chip-soft">Proof shared before resin pour</div>
         <div class="chip-soft">Secure packaging</div>
+        <div class="chip-soft">Custom colours & layouts</div>
       </div>
     </div>
   </div>
@@ -333,14 +203,13 @@
 <footer>
   <div class="footer-inner">
     <div>&copy; <span id="year"></span> J&H Resin Arts. All rights reserved.</div>
-    <div><a href="index.html#contact" style="color:#dbe4ff;text-decoration:underline;text-underline-offset:4px;">Contact / WhatsApp</a></div>
+    <div><a href="index.html#contact" style="color:#f3f5ff;text-decoration:underline;text-underline-offset:4px;">Contact / WhatsApp</a></div>
   </div>
 </footer>
 
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -360,13 +229,8 @@
   async function ensureAuth() {
     const user = auth.currentUser;
     if (user) return user;
-    try {
-      const cred = await auth.signInAnonymously();
-      return cred.user;
-    } catch (e) {
-      console.error("Auth error", e);
-      throw new Error("Unable to authenticate upload. Please try again.");
-    }
+    const cred = await auth.signInAnonymously();
+    return cred.user;
   }
 
   async function uploadPhotosToFirebase(files, productKey) {
@@ -381,411 +245,281 @@
     return Promise.all(promises);
   }
 
-  const productsData = {
+  const productsData = {};
+  const productsDataFull = {
     "resin-keychain": {
       title: "Resin Keychain",
       subtitle: "Initial and photo keychains",
       price: "Initial keychain from Rs.40 + shipping | Photo keychain from Rs.60 + shipping",
       description:
         "Custom alphabet and photo keychains made with resin, glitter, dried flowers and tiny charms. Perfect for daily use, gifting and return gifts.",
-      features: [
-        "Single letters, initials or full names",
-        "Photo keychains with your favourite pictures",
-        "Choose your own colours, flakes and stickers",
-        "Great for birthday return gifts or couple gifts"
-      ],
+      features: ["Single letters, initials or full names","Photo keychains with your favourite pictures","Choose your own colours, flakes and stickers","Great for birthday return gifts or couple gifts"],
       badges: ["Return gifts", "Alphabet designs", "Photo keychains"],
       images: ["image9.jpg", "image10.jpg", "image11.jpg", "image12.jpg"],
       extraTitle: "How to Order Keychains",
-      extraText:
-        "Share the letters, quantity, colour theme and any special icons (hearts, flowers, symbols). Tell us if you want initials or photo keychains. We will share final pricing based on the number of pieces."
+      extraText: "Share the letters, quantity, colour theme and any special icons (hearts, flowers, symbols). Tell us if you want initials or photo keychains. We will share final pricing based on the number of pieces."
     },
-
     "resin-photo-frame": {
       title: "Resin Photo Frame",
       subtitle: "Wedding, birthday, family and couple frames",
       price: "From Rs.475 - Rs.3,000 + shipping (depending on size and design)",
-      description:
-        "High-gloss resin frames with your favourite photos, names, dates and quotes. Ideal for anniversaries, birthdays and housewarming gifts.",
-      features: [
-        "Available sizes:",
-        "- 4 inch - Rs.475 + shipping",
-        "- 8 inch - Rs.950 + shipping",
-        "- 10 inch - Rs.1,500 + shipping",
-        "- 12 inch - Rs.1,800 + shipping",
-        "- 16 inch - Rs.3,000 + shipping",
-        "- 11 inch rectangle - Rs.1,600 + shipping",
-        "Choose layout, colour theme and decorations",
-        "Can include names, dates and short messages"
-      ],
+      description: "High-gloss resin frames with your favourite photos, names, dates and quotes. Ideal for anniversaries, birthdays and housewarming gifts.",
+      features: ["Available sizes:","- 4 inch - Rs.475 + shipping","- 8 inch - Rs.950 + shipping","- 10 inch - Rs.1,500 + shipping","- 12 inch - Rs.1,800 + shipping","- 16 inch - Rs.3,000 + shipping","- 11 inch rectangle - Rs.1,600 + shipping","Choose layout, colour theme and decorations","Can include names, dates and short messages"],
       badges: ["Anniversary gifts", "Birthday gifts", "Family memories"],
       images: ["image1.jpg", "image2.jpg", "image3.jpg", "image5.jpg"],
       extraTitle: "Best Occasions for Resin Photo Frames",
-      extraText:
-        "Perfect for wedding gifts, couple anniversaries, birthday collages or as a family memory wall piece. Pricing above is for reference; heavy decoration may change the final amount."
+      extraText: "Perfect for wedding gifts, couple anniversaries, birthday collages or as a family memory wall piece. Pricing above is for reference; heavy decoration may change the final amount."
     },
-
     "resin-marriage-preservation": {
       title: "Resin Marriage Preservation",
       subtitle: "Preserve your wedding memories in resin",
       price: "Typical range Rs.1,500 - Rs.3,000 + shipping (depending on size)",
-      description:
-        "Turn your wedding photos, dates and quotes into a preserved resin artwork. Optional flower and gold-flake decoration adds a luxurious look.",
-      features: [
-        "Add wedding dates and couple names",
-        "Include favourite wedding photos",
-        "Gold leaf, florals and stickers for decoration",
-        "Can be done on 10\", 12\" or 16\" frames; wooden frames for heavy work"
-      ],
+      description: "Turn your wedding photos, dates and quotes into a preserved resin artwork. Optional flower and gold-flake decoration adds a luxurious look.",
+      features: ["Add wedding dates and couple names","Include favourite wedding photos","Gold leaf, florals and stickers for decoration","Can be done on 10\", 12\" or 16\" frames; wooden frames for heavy work"],
       badges: ["Wedding gifts", "Anniversary keepsake"],
       images: ["image1.jpg", "image3.jpg", "image5.jpg"],
       extraTitle: "What Can Be Included",
-      extraText:
-        "Send digital photos and the text you want on the frame. For special wedding items or garlands, check the Wedding Garland Preservation product."
+      extraText: "Send digital photos and the text you want on the frame. For special wedding items or garlands, check the Wedding Garland Preservation product."
     },
-
     "resin-baby-preservation": {
       title: "Resin Baby Preservation",
       subtitle: "Baby announcement and milestone resin frames",
       price: "Frames from Rs.475 - Rs.3,000 + shipping (size 4\" to 16\")",
-      description:
-        "Celebrate your baby's arrival with a resin frame that includes birth details, hospital, weight, blood group and adorable photos.",
-      features: [
-        "Baby name, birth date and time",
-        "Hospital name, weight, blood group",
-        "Optional pregnancy test kit or baby footprints",
-        "Cute icons like bottles, toys and hearts"
-      ],
+      description: "Celebrate your baby's arrival with a resin frame that includes birth details, hospital, weight, blood group and adorable photos.",
+      features: ["Baby name, birth date and time","Hospital name, weight, blood group","Optional pregnancy test kit or baby footprints","Cute icons like bottles, toys and hearts"],
       badges: ["Newborn gift", "Baby shower gift"],
       images: ["image1.jpg", "image3.jpg", "image6.jpg", "image8.jpg"],
       extraTitle: "A Keepsake That Lasts",
-      extraText:
-        "Ideal to display in the baby's room or living room and becomes a long-term memory for the family."
+      extraText: "Ideal to display in the baby's room or living room and becomes a long-term memory for the family."
     },
-
     "resin-wall-clocks": {
       title: "Resin Wall Clocks",
       subtitle: "Photo clocks and decorative resin clocks",
       price: "9.7 inch clock frame - Rs.1,400 + shipping",
-      description:
-        "Functional clocks made with resin and custom designs. Add multiple photos around the clock face for a unique decor piece.",
-      features: [
-        "Round 9.7\" resin clock frame",
-        "8-12 photos or plain art style",
-        "Quality clock mechanism and hands",
-        "Made in kids, couple or family themes"
-      ],
+      description: "Functional clocks made with resin and custom designs. Add multiple photos around the clock face for a unique decor piece.",
+      features: ["Round 9.7\" resin clock frame","8-12 photos or plain art style","Quality clock mechanism and hands","Made in kids, couple or family themes"],
       badges: ["Home decor", "Photo gifts"],
       images: ["image7.jpg", "image2.jpg", "image1.jpg"],
       extraTitle: "Perfect for",
-      extraText:
-        "Kids' room decor, anniversary gifts, family clocks with all children's photos, or as a special birthday highlight."
+      extraText: "Kids' room decor, anniversary gifts, family clocks with all children's photos, or as a special birthday highlight."
     },
-
     "resin-name-stands": {
       title: "Resin Name Stands",
       subtitle: "Desk nameplates and display pieces",
       price: "Name plates from Rs.450 + shipping | Initial plates from Rs.350 + shipping",
-      description:
-        "Resin name stands with individual letters mounted on a base. Ideal for desks, shelves or gifting.",
-      features: [
-        "Single word names or couple names",
-        "Ombre colours, glitter and flakes",
-        "Smooth, glossy finish",
-        "Great for kids' names, work desks and room decor"
-      ],
+      description: "Resin name stands with individual letters mounted on a base. Ideal for desks, shelves or gifting.",
+      features: ["Single word names or couple names","Ombre colours, glitter and flakes","Smooth, glossy finish","Great for kids' names, work desks and room decor"],
       badges: ["Desk decor", "Personalised gifts"],
       images: ["image4.jpg", "image9.jpg", "image10.jpg"],
       extraTitle: "Styling Ideas",
-      extraText:
-        "Place them on bookshelves, study tables or reception desks. You can also pair with matching keychains as a combo gift."
+      extraText: "Place them on bookshelves, study tables or reception desks. You can also pair with matching keychains as a combo gift."
     },
-
     "personalized-resin-gifts": {
       title: "Personalized Resin Gifts",
       subtitle: "Mix of frames, keychains, clocks and stands",
       price: "Custom - depends on product type and quantity",
-      description:
-        "Choose any combination of our products and we'll design a personalised resin gift set for your occasion.",
-      features: [
-        "Any combination: frames, keychains, clocks, stands",
-        "Matching colour theme and style",
-        "Add names, dates and short messages",
-        "Ideal for special occasions and corporate gifting"
-      ],
+      description: "Choose any combination of our products and we'll design a personalised resin gift set for your occasion.",
+      features: ["Any combination: frames, keychains, clocks, stands","Matching colour theme and style","Add names, dates and short messages","Ideal for special occasions and corporate gifting"],
       badges: ["Gift hampers", "Custom combos"],
       images: ["image1.jpg", "image2.jpg", "image4.jpg", "image9.jpg"],
       extraTitle: "Create Your Own Gift Box",
-      extraText:
-        "Tell us your budget and occasion, and we can suggest a curated resin gift set with multiple pieces."
+      extraText: "Tell us your budget and occasion, and we can suggest a curated resin gift set with multiple pieces."
     },
-
     "customized-resin-gifts": {
       title: "Customized Resin Gifts",
       subtitle: "We design according to your idea",
       price: "Fully custom - quoted after discussion",
-      description:
-        "Have a unique idea? We can customise colours, layouts, shapes and elements to match your vision.",
-      features: [
-        "Custom layouts and shapes",
-        "Choose any colour palette",
-        "Option to include text, photos and charms",
-        "We share design previews before finalising"
-      ],
+      description: "Have a unique idea? We can customise colours, layouts, shapes and elements to match your vision.",
+      features: ["Custom layouts and shapes","Choose any colour palette","Option to include text, photos and charms","We share design previews before finalising"],
       badges: ["One-of-a-kind", "Fully custom"],
       images: ["image3.jpg", "image5.jpg", "image8.jpg", "image12.jpg"],
       extraTitle: "How Custom Orders Work",
-      extraText:
-        "Share your idea on WhatsApp with sample pictures or references. We'll confirm what is possible and share timelines and cost."
+      extraText: "Share your idea on WhatsApp with sample pictures or references. We'll confirm what is possible and share timelines and cost."
     },
-
     "resin-flower-preservation": {
       title: "Resin Flower Preservation",
       subtitle: "Preserve flowers inside clear resin",
       price: "Approx. Rs.1,299 - Rs.2,499 (depends on size and work)",
-      description:
-        "Dried or special flowers can be preserved inside a clear resin block or frame, keeping them safe for years.",
-      features: [
-        "Perfect for wedding bouquet flowers",
-        "Can be done as blocks, frames or coasters",
-        "Retention of natural colours as much as possible",
-        "Requires advance discussion about flower condition"
-      ],
+      description: "Dried or special flowers can be preserved inside a clear resin block or frame, keeping them safe for years.",
+      features: ["Perfect for wedding bouquet flowers","Can be done as blocks, frames or coasters","Retention of natural colours as much as possible","Requires advance discussion about flower condition"],
       badges: ["Wedding bouquet", "Memory keepsake"],
       images: ["image12.jpg", "image5.jpg"],
       extraTitle: "Important Note",
-      extraText:
-        "Fresh flowers need to be dried properly before casting. Message us to understand the process and shipping options."
+      extraText: "Fresh flowers need to be dried properly before casting. Message us to understand the process and shipping options."
     },
-
     "resin-jewellery": {
       title: "Resin Jewellery",
       subtitle: "Neckpieces, earrings, rings and more",
       price: "Rs.199 - Rs.799 per piece (sample range)",
-      description:
-        "Lightweight resin jewellery that can include flowers, glitter, foils and tiny charms.",
-      features: [
-        "Earrings, pendants, rings and bangles",
-        "Many shape molds and colour combinations",
-        "Hypoallergenic metal findings depending on stock",
-        "Great for festivals and gifting"
-      ],
+      description: "Lightweight resin jewellery that can include flowers, glitter, foils and tiny charms.",
+      features: ["Earrings, pendants, rings and bangles","Many shape molds and colour combinations","Hypoallergenic metal findings depending on stock","Great for festivals and gifting"],
       badges: ["Wearable art", "Lightweight"],
       images: ["image12.jpg"],
       extraTitle: "Custom Jewellery",
-      extraText:
-        "Share your preferred shapes (round, heart, rectangle, etc.) and colours. We can match jewellery to outfits or events."
+      extraText: "Share your preferred shapes (round, heart, rectangle, etc.) and colours. We can match jewellery to outfits or events."
     },
-
     "resin-art-bracelet": {
       title: "Resin Art Bracelet",
       subtitle: "Statement resin bracelets",
       price: "Approx. Rs.299 - Rs.699",
-      description:
-        "Chunky or slim resin bracelets with embedded florals, flakes or abstract art swirls.",
-      features: [
-        "Multiple sizes based on wrist",
-        "Solid or transparent designs",
-        "Floral, glitter or marble effects",
-        "Comfortable and smooth edges"
-      ],
+      description: "Chunky or slim resin bracelets with embedded florals, flakes or abstract art swirls.",
+      features: ["Multiple sizes based on wrist","Solid or transparent designs","Floral, glitter or marble effects","Comfortable and smooth edges"],
       badges: ["Fashion accessory", "Custom colours"],
       images: ["image12.jpg"],
       extraTitle: "Pair With",
-      extraText:
-        "Can be combined with matching earrings or a pendant to create a full jewellery set."
+      extraText: "Can be combined with matching earrings or a pendant to create a full jewellery set."
     },
-
     "resin-keepsakes": {
       title: "Resin Keepsakes",
       subtitle: "Special memory pieces preserved in resin",
       price: "Price depends on item and size",
-      description:
-        "Hair curls, tiny notes, charms or symbols can be preserved inside small resin pieces like hearts, blocks or letters.",
-      features: [
-        "Suitable for pet tags, baby keepsakes, tiny souvenirs",
-        "Various shapes and sizes possible",
-        "Clear or tinted backgrounds",
-        "Requires careful planning for delicate items"
-      ],
+      description: "Hair curls, tiny notes, charms or symbols can be preserved inside small resin pieces like hearts, blocks or letters.",
+      features: ["Suitable for pet tags, baby keepsakes, tiny souvenirs","Various shapes and sizes possible","Clear or tinted backgrounds","Requires careful planning for delicate items"],
       badges: ["Memory pieces", "Mini gifts"],
       images: ["image6.jpg", "image8.jpg"],
       extraTitle: "Ideas for Keepsakes",
-      extraText:
-        "Baby hospital tags, small pieces of handwritten notes, shells from a trip, mini charms from a special day - all can be turned into keepsakes."
+      extraText: "Baby hospital tags, small pieces of handwritten notes, shells from a trip, mini charms from a special day - all can be turned into keepsakes."
     },
-
     "resin-earrings": {
       title: "Resin Earrings",
       subtitle: "Cute and elegant resin earrings",
       price: "Rs.199 - Rs.499 per pair",
-      description:
-        "Handmade resin earrings in various shapes with glitters, florals or abstract art patterns.",
-      features: [
-        "Many shapes - hoops, drops, studs, rectangles",
-        "Custom colours to match your outfit",
-        "Lightweight and comfortable",
-        "Great for daily wear or festive looks"
-      ],
+      description: "Handmade resin earrings in various shapes with glitters, florals or abstract art patterns.",
+      features: ["Many shapes - hoops, drops, studs, rectangles","Custom colours to match your outfit","Lightweight and comfortable","Great for daily wear or festive looks"],
       badges: ["Wearable art", "Custom colours"],
       images: ["image12.jpg"],
       extraTitle: "Bulk and Gift Orders",
-      extraText:
-        "Order multiple mixed designs as gift sets or return gifts for small gatherings."
+      extraText: "Order multiple mixed designs as gift sets or return gifts for small gatherings."
     },
-
     "resin-pendant": {
       title: "Resin Pendant",
       subtitle: "Minimal to bold resin pendants",
       price: "Rs.249 - Rs.599",
-      description:
-        "Resin pendants with dried flowers, initials, glitter or small charms. Comes with matching chain or cord based on design.",
-      features: [
-        "Single or layered designs",
-        "Can include initials or small motifs",
-        "Great addition to casual and party outfits",
-        "Gift-ready packaging available"
-      ],
+      description: "Resin pendants with dried flowers, initials, glitter or small charms. Comes with matching chain or cord based on design.",
+      features: ["Single or layered designs","Can include initials or small motifs","Great addition to casual and party outfits","Gift-ready packaging available"],
       badges: ["Neck jewellery", "Personalised initial options"],
       images: ["image12.jpg"],
       extraTitle: "Combine With",
-      extraText:
-        "Pair pendants with matching earrings or bracelets for a complete jewellery set."
+      extraText: "Pair pendants with matching earrings or bracelets for a complete jewellery set."
     },
-
     "resin-bookmark": {
       title: "Resin Bookmark",
       subtitle: "Pretty bookmarks for book lovers",
       price: "Rs.150 - Rs.299 each",
-      description:
-        "Slim resin bookmarks with dried flowers, glitter or names - a perfect gift for readers.",
-      features: [
-        "Option to add name or initials",
-        "Tassel or charm at the top",
-        "Many colour combinations available",
-        "Durable and smooth edges"
-      ],
+      description: "Slim resin bookmarks with dried flowers, glitter or names - a perfect gift for readers.",
+      features: ["Option to add name or initials","Tassel or charm at the top","Many colour combinations available","Durable and smooth edges"],
       badges: ["Book lover gift", "Personalised"],
       images: ["image12.jpg"],
       extraTitle: "Great For",
-      extraText:
-        "Teacher's day gifts, return gifts, or personalised tokens for book clubs."
+      extraText: "Teacher's day gifts, return gifts, or personalised tokens for book clubs."
     },
-
     "resin-coasters": {
       title: "Resin Coasters",
       subtitle: "Stylish coasters for your table",
       price: "Rs.299 - Rs.899 per set (sample range)",
-      description:
-        "Resin coasters in round, square or geode shapes with colours, metallic edges and abstract art.",
-      features: [
-        "Heat-resistant for regular beverage use",
-        "Available as single pieces or sets",
-        "Gold or silver edging possible",
-        "Ideal for home decor and gifting"
-      ],
+      description: "Resin coasters in round, square or geode shapes with colours, metallic edges and abstract art.",
+      features: ["Heat-resistant for regular beverage use","Available as single pieces or sets","Gold or silver edging possible","Ideal for home decor and gifting"],
       badges: ["Home decor", "Functional art"],
       images: ["image12.jpg"],
       extraTitle: "Set Options",
-      extraText:
-        "Order sets of 2, 4 or 6 matching or mixed designs based on your table setting."
+      extraText: "Order sets of 2, 4 or 6 matching or mixed designs based on your table setting."
     },
-
     "resin-tray": {
       title: "Resin Tray",
       subtitle: "Decorative serving and vanity trays",
       price: "Rs.799 - Rs.1,999 (based on size and work)",
-      description:
-        "Resin-coated trays with rich colours and patterns, ideal for serving or as a vanity tray for perfumes and jewellery.",
-      features: [
-        "Multiple base shapes and sizes",
-        "Custom colour themes and metallic accents",
-        "Optional handles and hardware",
-        "Great as centre table or dressing table decor"
-      ],
+      description: "Resin-coated trays with rich colours and patterns, ideal for serving or as a vanity tray for perfumes and jewellery.",
+      features: ["Multiple base shapes and sizes","Custom colour themes and metallic accents","Optional handles and hardware","Great as centre table or dressing table decor"],
       badges: ["Luxury decor", "Gift item"],
       images: ["image12.jpg"],
       extraTitle: "Popular Themes",
-      extraText:
-        "Ocean, marble, geode and pastel swirl designs are some of the most loved tray styles."
+      extraText: "Ocean, marble, geode and pastel swirl designs are some of the most loved tray styles."
     },
-
     "resin-rings-bangles": {
       title: "Resin Rings and Bangles",
       subtitle: "Colourful rings and bangles made in resin",
       price: "Rs.199 - Rs.599 per piece",
-      description:
-        "Simple and chunky resin rings and bangles that can contain flowers, glitter or solid colours.",
-      features: [
-        "Custom sizes to fit comfortably",
-        "Single colour or multi-colour options",
-        "Smooth interior surface for easy wear",
-        "Can be matched with other resin jewellery"
-      ],
+      description: "Simple and chunky resin rings and bangles that can contain flowers, glitter or solid colours.",
+      features: ["Custom sizes to fit comfortably","Single colour or multi-colour options","Smooth interior surface for easy wear","Can be matched with other resin jewellery"],
       badges: ["Fashion accessory", "Custom fits"],
       images: ["image12.jpg"],
       extraTitle: "Matching Sets",
-      extraText:
-        "Rings and bangles can be ordered as sets with bracelets and earrings in the same colour palette."
+      extraText: "Rings and bangles can be ordered as sets with bracelets and earrings in the same colour palette."
     },
-
     "wooden-frame": {
       title: "Wooden Frame (Free Shipping)",
       subtitle: "Premium wooden frames for heavy preservations",
       price: "10\" and 12\" - Rs.5,000 | 15\" - Rs.5,500 | 18\" - Rs.6,000 (Free shipping)",
-      description:
-        "Strong, premium wooden frames designed specially for heavy preservations like wedding garlands and rich floral designs.",
-      features: [
-        "Four main sizes available: 10\", 12\", 15\", 18\"",
-        "Ideal for big garlands and thick florals",
-        "High-quality wooden finish with protective coating",
-        "Free shipping within India for wooden frames"
-      ],
+      description: "Strong, premium wooden frames designed specially for heavy preservations like wedding garlands and rich floral designs.",
+      features: ["Four main sizes available: 10\", 12\", 15\", 18\"","Ideal for big garlands and thick florals","High-quality wooden finish with protective coating","Free shipping within India for wooden frames"],
       badges: ["Free shipping", "Wedding decor", "Premium"],
       images: ["image5.jpg", "image6.jpg"],
       extraTitle: "Usage Ideas",
-      extraText:
-        "Best for wedding garland preservation, heavy flower work or any design where you want a strong and rich-looking base."
+      extraText: "Best for wedding garland preservation, heavy flower work or any design where you want a strong and rich-looking base."
     },
-
     "wedding-garland-preservation": {
       title: "Wedding Garland Preservation",
       subtitle: "Preserve your garlands in a premium wooden frame",
       price: "10\" and 12\" - Rs.5,000 | 15\" - Rs.5,500 | 18\" - Rs.6,000 (Free shipping)",
-      description:
-        "We carefully dry and arrange your wedding garlands inside a premium wooden frame, sealing them with resin and decor elements so you can keep the memory forever.",
-      features: [
-        "Garlands arranged in a customised layout",
-        "Choice of background colour and small decor",
-        "Premium wooden frame with free shipping",
-        "Can add couple names, wedding date and a quote"
-      ],
+      description: "We carefully dry and arrange your wedding garlands inside a premium wooden frame, sealing them with resin and decor elements so you can keep the memory forever.",
+      features: ["Garlands arranged in a customised layout","Choice of background colour and small decor","Premium wooden frame with free shipping","Can add couple names, wedding date and a quote"],
       badges: ["Wedding keepsake", "Premium wooden frame", "Free shipping"],
       images: ["image5.jpg", "image6.jpg"],
       extraTitle: "How It Works",
-      extraText:
-        "Message us on WhatsApp to discuss the size and shipping of your garlands. We will guide you on how to pack and send them safely, then share layout ideas before finalising."
+      extraText: "Message us on WhatsApp to discuss the size and shipping of your garlands. We will guide you on how to pack and send them safely, then share layout ideas before finalising."
     },
-
     "breastmilk-jewellery": {
       title: "Breastmilk and Umbilical Cord Jewellery",
       subtitle: "Motherhood keepsake pendant",
       price: "Making charge Rs.2,000 + gold rate or silver rate (as per your choice)",
-      description:
-        "A deeply personal jewellery piece made using your breastmilk and baby's umbilical cord, preserved beautifully inside resin. This keepsake symbolises the emotional bond between mother and child.",
-      features: [
-        "Preserved breastmilk as the main centre design",
-        "Optional umbilical cord inclusion for extra sentiment",
-        "Choice of gold-plated or silver-based metal setting",
-        "UV-cured resin for long-lasting clarity and protection"
-      ],
+      description: "A deeply personal jewellery piece made using your breastmilk and baby's umbilical cord, preserved beautifully inside resin. This keepsake symbolises the emotional bond between mother and child.",
+      features: ["Preserved breastmilk as the main centre design","Optional umbilical cord inclusion for extra sentiment","Choice of gold-plated or silver-based metal setting","UV-cured resin for long-lasting clarity and protection"],
       badges: ["Motherhood keepsake", "Premium jewellery", "Custom metal"],
       images: ["breastmilk1.jpg", "breastmilk2.jpg"],
       extraTitle: "Important Information",
-      extraText:
-        "The displayed price includes a making charge of Rs.2,000. Final cost depends on current gold or silver rate for the pendant base you choose. We will guide you on how to safely send the breastmilk and cord sample."
+      extraText: "The displayed price includes a making charge of Rs.2,000. Final cost depends on current gold or silver rate for the pendant base you choose. We will guide you on how to safely send the breastmilk and cord sample."
     }
   };
+
+  Object.assign(productsData, productsDataFull);
+
+  function renderSlider(images) {
+    const track = document.getElementById("sliderTrack");
+    const dots = document.getElementById("sliderDots");
+    track.innerHTML = "";
+    dots.innerHTML = "";
+    images.forEach(src => {
+      const slide = document.createElement("div");
+      slide.className = "slide";
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "Product image";
+      slide.appendChild(img);
+      track.appendChild(slide);
+    });
+    images.forEach((_, idx) => {
+      const dot = document.createElement("div");
+      dot.className = "dot" + (idx === 0 ? " active" : "");
+      dot.addEventListener("click", () => goToSlide(idx));
+      dots.appendChild(dot);
+    });
+  }
+
+  let currentSlide = 0;
+  function goToSlide(idx) {
+    const track = document.getElementById("sliderTrack");
+    const dots = Array.from(document.querySelectorAll(".dot"));
+    currentSlide = idx;
+    track.style.transform = `translateX(-${idx * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+  }
+
+  function startAutoSlide(total) {
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % total;
+      goToSlide(currentSlide);
+    }, 3200);
+  }
 
   function renderProduct() {
     const params = new URLSearchParams(window.location.search);
@@ -820,9 +554,13 @@
       badgeRow.appendChild(span);
     });
 
+    const galleryImages = data.images || [];
+    renderSlider(galleryImages);
+    if (galleryImages.length) startAutoSlide(galleryImages.length);
+
     const imgContainer = document.getElementById("productImages");
     imgContainer.innerHTML = "";
-    (data.images || []).forEach(src => {
+    galleryImages.forEach(src => {
       const wrap = document.createElement("div");
       wrap.className = "product-gallery-img";
       const img = document.createElement("img");
@@ -845,11 +583,7 @@
 
     photoUpload.addEventListener("change", () => {
       const count = photoUpload.files.length;
-      if (count) {
-        uploadInfo.textContent = `Selected ${count} photo${count > 1 ? "s" : ""}. Please add between 5 and 12.`;
-      } else {
-        uploadInfo.textContent = "";
-      }
+      uploadInfo.textContent = count ? `Selected ${count} photo${count > 1 ? "s" : ""}. Please add 5-12.` : "";
     });
 
     const orderBtn = document.getElementById("orderButton");
@@ -857,31 +591,16 @@
       formFeedback.classList.remove("show");
       orderBtn.disabled = true;
       orderBtn.textContent = "Uploading photos...";
+
       const variant = document.getElementById("variantInput").value.trim();
       const colours = document.getElementById("colourInput").value.trim() || "No colour preference";
       const notes = document.getElementById("notesInput").value.trim() || "No extra notes";
       const address = document.getElementById("addressInput").value.trim();
       const files = photoUpload.files;
 
-      if (!variant) {
-        formFeedback.textContent = "Please mention the size or variant you want.";
-        formFeedback.classList.add("show");
-        return;
-      }
-
-      if (!address) {
-        formFeedback.textContent = "Please add your complete delivery address.";
-        formFeedback.classList.add("show");
-        return;
-      }
-
-      if (files.length < 5 || files.length > 12) {
-        formFeedback.textContent = "Please upload between 5 and 12 photos so we can design accurately.";
-        formFeedback.classList.add("show");
-        orderBtn.disabled = false;
-        orderBtn.textContent = "Send brief on WhatsApp";
-        return;
-      }
+      if (!variant) { formFeedback.textContent = "Please mention the size or variant you want."; formFeedback.classList.add("show"); orderBtn.disabled = false; orderBtn.textContent = "Upload & send on WhatsApp"; return; }
+      if (!address) { formFeedback.textContent = "Please add your complete delivery address."; formFeedback.classList.add("show"); orderBtn.disabled = false; orderBtn.textContent = "Upload & send on WhatsApp"; return; }
+      if (files.length < 5 || files.length > 12) { formFeedback.textContent = "Please upload between 5 and 12 photos."; formFeedback.classList.add("show"); orderBtn.disabled = false; orderBtn.textContent = "Upload & send on WhatsApp"; return; }
 
       let photoUrls = [];
       try {
@@ -891,7 +610,7 @@
         formFeedback.textContent = "Upload failed. Please check your internet and try again.";
         formFeedback.classList.add("show");
         orderBtn.disabled = false;
-        orderBtn.textContent = "Send brief on WhatsApp";
+        orderBtn.textContent = "Upload & send on WhatsApp";
         return;
       }
 
@@ -908,12 +627,12 @@
 
       window.location.href = "https://wa.me/919500664388?text=" + encodeURIComponent(message);
       orderBtn.disabled = false;
-      orderBtn.textContent = "Send brief on WhatsApp";
+      orderBtn.textContent = "Upload & send on WhatsApp";
     };
   }
 
   renderProduct();
 </script>
-
 </body>
 </html>
+
