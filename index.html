@@ -86,6 +86,82 @@
     footer { padding: 1.6rem 1.3rem; background: #1c1c22; color: #e8e8f0; font-size: 0.9rem; margin-top: 2.4rem; }
     .footer-inner { width: min(1360px, 96vw); margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; align-items: center; }
 
+    .float-chat {
+      position: fixed;
+      bottom: 18px;
+      left: 18px;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #111, #2a2a2a);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 18px 32px rgba(0,0,0,0.18);
+      z-index: 60;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .float-chat:hover { transform: translateY(-2px); box-shadow: 0 22px 36px rgba(0,0,0,0.24); }
+    .float-chat span { font-size: 0.75rem; line-height: 1.1; text-align: center; padding: 0 8px; }
+
+    .chat-pop {
+      position: fixed;
+      bottom: 90px;
+      left: 18px;
+      width: 260px;
+      max-width: 80vw;
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 18px 32px rgba(0,0,0,0.14);
+      border-radius: 14px;
+      padding: 0.9rem 1rem 1rem;
+      z-index: 59;
+      display: none;
+      gap: 0.6rem;
+      animation: floatIn 0.25s ease-out;
+    }
+    .chat-pop-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
+    .chat-pop-title { font-weight: 700; color: var(--ink); }
+    .chat-pop-close { border: none; background: none; cursor: pointer; font-size: 1.1rem; color: #888; }
+    .chat-pop p { font-size: 0.92rem; color: #444; margin-bottom: 0.6rem; }
+    .chat-pop button {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 0.6rem 0.8rem;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    @keyframes floatIn {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+
+    .float-chat {
+      position: fixed;
+      bottom: 18px;
+      left: 18px;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #111, #2a2a2a);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 18px 32px rgba(0,0,0,0.18);
+      z-index: 60;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .float-chat:hover { transform: translateY(-2px); box-shadow: 0 22px 36px rgba(0,0,0,0.24); }
+    .float-chat span { font-size: 0.75rem; line-height: 1.1; text-align: center; padding: 0 8px; }
+
     @media (max-width: 900px) { .nav-links { display: none; } .hero-slide { grid-template-columns: 1fr; } }
     @media (max-width: 600px) { main { padding: 2.5rem 1rem 3rem; } section { padding: 2.6rem 0; } .hero-slide h1 { font-size: 2rem; } }
   </style>
@@ -260,6 +336,18 @@
   </div>
 </footer>
 
+<a class="float-chat" href="https://wa.me/919500664388?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20your%20resin%20products" aria-label="Ask a question on WhatsApp">
+  <span>Chat</span>
+</a>
+<div class="chat-pop" id="chatPop">
+  <div class="chat-pop-header">
+    <div class="chat-pop-title">How can I help you today?</div>
+    <button class="chat-pop-close" aria-label="Close chat prompt" onclick="document.getElementById('chatPop').style.display='none';">×</button>
+  </div>
+  <p>Tap to chat on WhatsApp for quick questions, pricing or custom designs.</p>
+  <button onclick="window.location.href='https://wa.me/919500664388?text=Hi%2C%20I%20have%20a%20question%20about%20your%20resin%20products';">Chat on WhatsApp</button>
+</div>
+
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
   const heroSlides = [
@@ -300,11 +388,12 @@
     Array.from(document.querySelectorAll('.hero-dot')).forEach((d, idx) => d.classList.toggle('active', idx === i));
   }
   setInterval(() => { heroIndex = (heroIndex + 1) % heroSlides.length; goHero(heroIndex); }, 3600);
+
+  // Chat pop timing
+  const chatPop = document.getElementById('chatPop');
+  if (chatPop) {
+    setTimeout(() => { chatPop.style.display = 'grid'; }, 1200);
+  }
 </script>
 </body>
 </html>
-
-
-
-
-
